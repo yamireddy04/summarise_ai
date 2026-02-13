@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* ---------------- DASHBOARD ---------------- */
+
+.dashboard {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.dashboard-hero {
+  font-size: 48px;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------------- TABS ---------------- */
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: none;
+  background: #1a1a1a;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.tabs button.active {
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+}
+
+/* ---------------- DROPDOWNS (NEW POLISHED STYLE) ---------------- */
+
+.controls {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.controls select {
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: 1px solid #2a2a2a;
+  background: #1a1a1a;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.controls select:hover {
+  border: 1px solid #7873f5;
+}
+
+/* ---------------- INPUT ---------------- */
+
+textarea,
+input[type="file"] {
+  width: 600px;
+  padding: 20px;
+  border-radius: 18px;
+  border: none;
+  background: #1a1a1a;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.gradient-btn {
+  width: 600px;
+  padding: 16px;
+  border-radius: 40px;
+  border: none;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.gradient-btn:hover {
+  transform: scale(1.04);
+}
+
+.small-btn {
+  padding: 8px 18px;
+  border-radius: 30px;
+  border: none;
+  background: #1f1f1f;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.small-btn:hover {
+  background: #2f2f2f;
+}
+
+/* Arrow Buttons */
+
+.arrow-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 14px 18px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.arrow-left { left: 20px; }
+.arrow-right { right: 20px; }
+
+/* ---------------- RESULT ---------------- */
+
+.result {
+  margin-top: 30px;
+  width: 600px;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 20px;
+  line-height: 1.8;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.result h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #ff6ec4;
+}
+
+.summary-content {
+  white-space: pre-line;
+  font-size: 15px;
+}
+
+.result-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+}
+
+.feedback {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #7873f5;
+}
+
+/* ---------------- HISTORY ---------------- */
+
+.history {
+  margin-top: 40px;
+  width: 600px;
+}
+
+.history-item {
+  background: #1a1a1a;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.history-item:hover {
+  background: #222;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* ================= LANDING PAGE NEW DESIGN ================= */
+
+.landing-new {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0f0f0f;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Main Brand Title */
+
+.brand-title {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #4facfe, #ff6ec4);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s infinite linear;
+}
+
+/* Tagline */
+
+.brand-tagline {
+  font-size: 18px;
+  color: #bbbbbb;
+  margin-bottom: 60px;
+  font-weight: 500;
+}
+
+/* Dynamic Text */
+
+.dynamic-text {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #4facfe, #ff6ec4);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeSlide 0.6s ease, gradientMove 6s infinite linear;
+}
+
+/* Start Button spacing */
+
+.start-btn {
+  width: 300px;
+}
+
+/* Animations */
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% }
+  100% { background-position: 300% }
+}
