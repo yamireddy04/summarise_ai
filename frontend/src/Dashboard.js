@@ -5,7 +5,7 @@ import "./App.css";
 
 function Dashboard() {
 
-  const BACKEND = "http://localhost:8000";
+  const BACKEND = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const location = useLocation();
 
