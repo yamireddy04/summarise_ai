@@ -5,7 +5,7 @@ import "./App.css";
 
 function Dashboard() {
 
-  const BACKEND = process.env.REACT_APP_API_URL;
+  const BACKEND = process.env.https://summarise-backend.onrender.com;
   const navigate = useNavigate();
   const location = useLocation();
 
