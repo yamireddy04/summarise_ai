@@ -164,3 +164,10 @@ It reflects real-world AI system implementation beyond theoretical coursework.
 - Model fine-tuning support
 - Docker containerization
 - Performance optimization
+
+---
+
+## Live Link
+backend - https://summarise-backend.onrender.com
+frontend - https://summarise-ai.vercel.app/
+  
