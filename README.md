@@ -1,6 +1,6 @@
-# AI Text Summarizer
+# AI Summarizer
 
-A full-stack AI-powered text summarization web application built using Flask and React.
+A full-stack AI-powered summarization web application built using Flask and React.
 
 ## 🚀 Features
 
