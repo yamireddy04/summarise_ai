@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
-from huggingface_hub import InferenceClient
+from openai import OpenAI
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
@@ -14,11 +14,13 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-HF_TOKEN = os.getenv("HF_TOKEN")
+# Ensure XAI_API_KEY is in your .env file
+XAI_API_KEY = os.getenv("XAI_API_KEY")
 
-client = InferenceClient(
-    model="mistralai/Mistral-7B-Instruct-v0.2",
-    token=HF_TOKEN,
+# Initialize OpenAI client pointed at xAI's base_url
+client = OpenAI(
+    api_key=XAI_API_KEY,
+    base_url="https://api.x.ai/v1",
 )
 
 history_store = []
@@ -70,7 +72,8 @@ def generate_summary(text, content_type, length, format_type):
 
     prompt = build_prompt(text, content_type, length, format_type)
 
-    response = client.chat_completion(
+    response = client.chat.completions.create(
+        model="grok-beta",
         messages=[
             {"role": "system", "content": "You are an expert AI summarizer. Never use markdown symbols like * or ** in output."},
             {"role": "user", "content": prompt}
@@ -105,7 +108,6 @@ def summarize_text():
 
     text = data.get("text", "").strip()
 
-    # ✅ BACKEND VALIDATION (no UI change)
     if not text:
         return jsonify({"error": "No text provided"}), 400
 
