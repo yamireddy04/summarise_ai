@@ -5,7 +5,7 @@ import "./App.css";
 
 function Dashboard() {
 
-  const BACKEND = "https://summarise-backend.onrender.com";
+  const BACKEND = "http://127.0.0.1:8000";
   const navigate = useNavigate();
   const location = useLocation();
 
