@@ -9,30 +9,28 @@ import fitz
 import os
 import uuid
 
-# Load environment variables from .env file
-load_dotenv()
+# 1. Load environment variables
+load_dotenv(dotenv_path=".env")
 
 app = Flask(__name__)
 CORS(app)
 
-# Retrieve the API key from your environment variables
-XAI_API_KEY = os.getenv("XAI_API_KEY")
+# 2. Retrieve the Groq API key
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# Debugging: Confirm the key is loaded
-print(f"DEBUG: XAI_API_KEY loaded: {bool(XAI_API_KEY)}")
+# 3. Debugging: Confirm the key is loaded
+print(f"DEBUG: GROQ_API_KEY loaded: {bool(GROQ_API_KEY)}")
 
-# Initialize the OpenAI client pointed at xAI's base_url
+# 4. Initialize the Groq client
 client = OpenAI(
-    api_key=XAI_API_KEY,
-    base_url="https://api.x.ai/v1",
+    api_key=GROQ_API_KEY,
+    base_url="https://api.groq.com/openai/v1",
 )
 
 history_store = []
 
-# -----------------------------
-# Build Prompt (Unchanged)
-# -----------------------------
 def build_prompt(text, content_type, length, format_type):
+    # Prompt mapping remains the same
     length_map = {
         "short": "Write a concise summary in 60-90 words.",
         "medium": "Write a clear summary in 120-180 words.",
@@ -60,9 +58,6 @@ Content:
 Return only the summary.
 """
 
-# -----------------------------
-# Generate Summary (With Debugging)
-# -----------------------------
 def generate_summary(text, content_type, length, format_type):
     if len(text) > 6000:
         text = text[:6000]
@@ -70,8 +65,9 @@ def generate_summary(text, content_type, length, format_type):
     prompt = build_prompt(text, content_type, length, format_type)
 
     try:
+        # Using a supported Groq model
         response = client.chat.completions.create(
-            model="grok-beta",  # Ensure this matches your available model
+            model="llama-3.3-70b-versatile", 
             messages=[
                 {"role": "system", "content": "You are an expert AI summarizer. Never use markdown symbols like * or ** in output."},
                 {"role": "user", "content": prompt}
@@ -96,9 +92,7 @@ def generate_summary(text, content_type, length, format_type):
         print(f"Error Details: {str(e)}")
         return "Error: Could not connect to AI service. Please check terminal logs."
 
-# -----------------------------
-# ROUTES (Unchanged)
-# -----------------------------
+# Routes remain the same
 @app.route("/")
 def home():
     return "AI Summariser Backend Running 🚀"
