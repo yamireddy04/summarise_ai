@@ -214,19 +214,6 @@ http://localhost:3000
 
 ---
 
-## 🎓 Academic Value
-
-This project demonstrates:
-
-* Applied NLP system integration
-* Transformer-based inference workflows
-* Full-stack AI deployment
-* RESTful backend design
-* Secure environment variable handling
-* PDF processing pipelines
-
-It reflects the practical implementation of AI systems beyond theoretical coursework.
-
 ## Live Link
 backend - https://summarise-backend.onrender.com
 frontend - https://summarise-ai.vercel.app/
