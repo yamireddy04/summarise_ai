@@ -10,6 +10,7 @@ A full-stack AI-powered web application that generates high-quality summaries fr
 Built with **Flask** (Python) for the backend and **React** for the frontend.
  
 **Live Frontend:** https://summarise-ai.vercel.app/
+
 **Live Backend:** https://summarise-backend.onrender.com
  
 ---
