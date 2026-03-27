@@ -2,168 +2,189 @@
 
 A full-stack AI-powered web application that generates high-quality summaries from raw text or uploaded PDF documents using transformer-based language models.
 
-Built with **Flask (Python)** for the backend and **React** for the frontend.
+Built with **Flask** (Python) for the backend and **React** for the frontend.
+
+**Live Frontend:** https://summarise-ai.vercel.app/
+**Live Backend:** https://summarise-backend.onrender.com
 
 ---
 
 ## 1️⃣ Problem Statement
 
-Long-form textual content such as research papers, reports, and articles is time-consuming to read and analyze. Users often need concise summaries to quickly extract key insights without processing the entire document.
+Long-form textual content — research papers, business reports, legal documents, and technical articles — is time-consuming to read and analyze. Users frequently need concise summaries to extract key insights without processing entire documents.
 
-This project builds an end-to-end AI system that enables users to generate structured summaries from:
+This project builds an end-to-end AI system that enables users to generate structured, high-quality summaries from:
 
-* Raw pasted text
-* Uploaded PDF documents
+- Raw pasted text
+- Uploaded PDF documents
 
 ---
 
 ## 2️⃣ Why It Matters
 
-With the rapid growth of digital documentation, efficient information compression is critical in:
+With the rapid growth of digital documentation, efficient information compression is critical across multiple domains:
 
-* Academic research
-* Business reporting
-* Legal documentation
-* Technical documentation workflows
+- **Academic research:** Rapidly assessing relevance of papers before deep reading
+- **Business reporting:** Condensing lengthy reports into executive-level insights
+- **Legal documentation:** Extracting key clauses without full document review
+- **Technical documentation:** Accelerating onboarding and knowledge transfer workflows
 
-Automated summarization improves productivity by reducing cognitive load and accelerating knowledge extraction.
-
-This system demonstrates practical integration of modern NLP models into a deployable web application.
+Automated summarization reduces cognitive load, accelerates knowledge extraction, and demonstrates practical integration of modern NLP models into a deployable, user-facing web application.
 
 ---
 
 ## 3️⃣ Dataset
 
-This application does **not use a locally trained dataset**.
+This application does not use a locally trained dataset.
 
-Instead:
+- Text input is provided directly by users at runtime.
+- PDF content is extracted programmatically using **PyMuPDF**.
+- Summaries are generated using pretrained transformer models accessed via the **Hugging Face Inference API**.
 
-* Text input is provided directly by users.
-* PDF content is extracted using **PyMuPDF**.
-* Summaries are generated using transformer models via the **Hugging Face Inference API**.
-
-The summarization quality depends on the pretrained transformer model accessed through the API.
+Summarization quality depends on the pretrained transformer model accessed through the API. No local fine-tuning is performed in this version.
 
 ---
 
 ## 4️⃣ Methodology
 
-The system follows this pipeline:
+The system follows a clean, end-to-end pipeline:
 
-1. User uploads PDF or pastes raw text.
-2. PDF text is extracted using PyMuPDF.
-3. Text is sent to the Flask backend.
-4. Backend sends request to Hugging Face Inference API.
-5. Transformer model generates summary.
-6. Summary is formatted (paragraph or bullet format).
-7. Output is returned to frontend.
-8. Optional: Summary exported as downloadable PDF.
+1. User uploads a PDF or pastes raw text via the React frontend.
+2. PDF text is extracted using PyMuPDF on the backend.
+3. Cleaned text is sent to the Flask backend via Axios API request.
+4. Backend forwards the request to the Hugging Face Inference API.
+5. The transformer model generates the summary.
+6. The summary is formatted into the selected output style (paragraph or bullet points).
+7. The formatted summary is returned to the frontend for display.
+8. Optionally, the user can download the summary as a formatted PDF.
 
-This ensures clean separation between:
-
-* Data ingestion
-* Model inference
-* Response formatting
-* Frontend rendering
+```
+User Input (PDF / Raw Text)
+        │
+        ▼
+  [PDF Extraction — PyMuPDF]
+        │
+        ▼
+  [Flask Backend]
+  - Request construction
+  - Hugging Face API call
+        │
+        ▼
+  [Transformer Model — Hugging Face Inference API]
+  - Summary generation
+        │
+        ▼
+  [Response Formatting]
+  - Paragraph or bullet point output
+  - Adjustable length (Short / Medium / Long)
+        │
+        ▼
+  [React Frontend]
+  - Summary display
+  - History tracking
+  - Optional PDF export (ReportLab)
+```
 
 ---
 
 ## 5️⃣ Model Architecture
 
-The application uses:
+**Inference Pipeline**
 
-* Pretrained transformer-based summarization models
-* Accessed via Hugging Face Inference API
+| Component | Technology |
+|---|---|
+| Summarization Model | Pretrained transformer-based model |
+| Model Access | Hugging Face Inference API |
+| PDF Extraction | PyMuPDF |
+| PDF Export | ReportLab |
+| Backend | Flask, Flask-CORS |
+| Frontend | React, Axios |
 
-Architecture flow:
+**Architecture Flow**
 
+```
 React Frontend
-⬇
-Axios API Request
-⬇
+      │  Axios API Request
+      ▼
 Flask Backend
-⬇
-Hugging Face Transformer Model
-⬇
-Generated Summary
-⬇
-Response to Frontend
+      │  Hugging Face API Request
+      ▼
+Transformer Summarization Model
+      │  Generated Summary
+      ▼
+Flask Backend
+      │  Formatted Response
+      ▼
+React Frontend (Display + Optional Download)
+```
 
-No local fine-tuning is performed in this version.
+No local model fine-tuning or custom training is performed. The system acts as a structured orchestration layer around a pretrained transformer endpoint.
 
 ---
 
 ## 6️⃣ Results
 
-The system successfully:
+The system successfully delivers the following capabilities in production:
 
-* Generates coherent summaries from long-form text
-* Supports adjustable summary lengths (Short / Medium / Long)
-* Provides output formatting options (Paragraph / Bullet Points)
-* Enables summary download as formatted PDF
-* Maintains summary history tracking
+| Feature | Status |
+|---|---|
+| Raw text summarization | ✅ Functional |
+| PDF upload and extraction | ✅ Functional |
+| Adjustable summary length (Short / Medium / Long) | ✅ Functional |
+| Output format selection (Paragraph / Bullet Points) | ✅ Functional |
+| Summary download as PDF | ✅ Functional |
+| Summary history tracking | ✅ Functional |
 
-The deployed version is live and functional:
+The deployed version is live and functional at the links above. Qualitative evaluation across various document types confirms coherent, well-structured summary generation.
 
-Frontend:
-[https://summarise-ai.vercel.app/](https://summarise-ai.vercel.app/)
-
-Backend:
-[https://summarise-backend.onrender.com](https://summarise-backend.onrender.com)
+> Quantitative evaluation metrics (e.g., ROUGE scoring) are planned as future work.
 
 ---
 
 ## 7️⃣ Limitations
 
-* Dependent on external Hugging Face API availability.
-* No local model fine-tuning.
-* No quantitative evaluation metrics implemented.
-* Performance may vary depending on input length and model constraints.
-* API rate limits may affect scalability.
+- **External API Dependency:** System availability depends on Hugging Face Inference API uptime.
+- **No Local Fine-Tuning:** The model is not fine-tuned on domain-specific corpora, which may limit performance on technical or specialized text.
+- **No Quantitative Evaluation:** ROUGE scoring and benchmark evaluation are not yet implemented.
+- **Input Length Constraints:** Performance may vary depending on input length relative to the model's context window limits.
+- **API Rate Limits:** Throughput is constrained by Hugging Face API rate limits, affecting scalability under high load.
 
 ---
 
 ## 8️⃣ Future Work
 
-* Local transformer model hosting
-* Fine-tuning models on domain-specific corpora
-* Add evaluation metrics (ROUGE scoring)
-* Implement caching for improved performance
-* Add user authentication system
-* Docker containerization
-* Cloud scalability improvements (AWS / GCP)
+- Host transformer models locally to eliminate external API dependency
+- Fine-tune models on domain-specific corpora (legal, medical, academic)
+- Implement ROUGE scoring for quantitative summarization evaluation
+- Add caching layer for repeated or similar inputs to improve response time
+- Implement user authentication and personal summary history
+- Containerize using Docker for consistent deployment across environments
+- Scale backend infrastructure using AWS or GCP for production load
 
 ---
 
 ## 9️⃣ How to Run
 
-## 🔑 Environment Variables
+**Environment Variables**
 
-Create a `.env` file inside the backend folder:
+Create a `.env` file inside the `backend/` folder:
 
 ```
 HF_TOKEN=your_huggingface_access_token_here
 ```
 
-⚠️ Do NOT push this file to GitHub.
-Ensure `.env` is included in `.gitignore`.
+> ⚠️ Do NOT push this file to GitHub. Ensure `.env` is listed in `.gitignore`.
 
----
+**1. Clone Repository**
 
-## ▶️ Running the Project Locally
-
-### 1️⃣ Clone Repository
-
-```
+```bash
 git clone https://github.com/yourusername/summariserai.git
 cd summariserai
 ```
 
----
+**2. Backend Setup**
 
-### 2️⃣ Backend Setup
-
-```
+```bash
 cd backend
 python3 -m venv venv
 source venv/bin/activate
@@ -171,50 +192,34 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Backend runs on:
+Backend runs on: `http://localhost:8000`
 
-```
-http://localhost:8000
-```
+**3. Frontend Setup**
 
----
-
-### 3️⃣ Frontend Setup
-
-```
+```bash
 cd frontend
 npm install
 npm start
 ```
 
-Frontend runs on:
-
-```
-http://localhost:3000
-```
+Frontend runs on: `http://localhost:3000`
 
 ---
 
-# 🛠 Tech Stack
+## 🔟 Conclusion
 
-## 🔹 Frontend
-
-* React
-* Axios
-* CSS
-
-## 🔹 Backend
-
-* Flask
-* Flask-CORS
-* Hugging Face Inference API
-* PyMuPDF
-* ReportLab
-* python-dotenv
+This project demonstrates how pretrained transformer models can be integrated into a deployable, user-facing web application to solve a practical information-compression problem. By separating data ingestion, model inference, response formatting, and frontend rendering into distinct layers, the system achieves clean modularity and extensibility. The result is a functional, production-deployed summarization tool with a clear roadmap toward local model hosting, domain-specific fine-tuning, and quantitative evaluation — forming a strong foundation for more rigorous NLP application development.
 
 ---
 
-## Live Link
-backend - https://summarise-backend.onrender.com
-frontend - https://summarise-ai.vercel.app/
-  
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React, Axios, CSS |
+| Backend | Flask, Flask-CORS, python-dotenv |
+| AI Inference | Hugging Face Inference API (Transformer models) |
+| PDF Extraction | PyMuPDF |
+| PDF Export | ReportLab |
+| Frontend Hosting | Vercel |
+| Backend Hosting | Render |
