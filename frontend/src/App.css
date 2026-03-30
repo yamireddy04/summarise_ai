@@ -267,3 +267,145 @@ input[type="file"] {
   0% { background-position: 0% }
   100% { background-position: 300% }
 }
+
+@media (max-width: 768px) {
+
+  /* Landing page */
+  .brand-title {
+    font-size: 38px;
+  }
+
+  .brand-tagline {
+    font-size: 15px;
+    margin-bottom: 36px;
+  }
+
+  .dynamic-text {
+    font-size: 22px;
+    margin-bottom: 36px;
+    padding: 0 16px;
+  }
+
+  .start-btn {
+    width: 90%;
+    max-width: 340px;
+  }
+
+  /* Dashboard layout */
+  .dashboard {
+    padding: 50px 16px 80px;
+  }
+
+  .dashboard-hero {
+    font-size: 30px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  /* Tabs */
+  .tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tabs button {
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+
+  /* Controls — stack vertically on mobile */
+  .controls {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .controls select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+
+  /* Textarea and file input */
+  textarea,
+  input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 14px;
+  }
+
+  /* Generate button */
+  .gradient-btn {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+
+  /* Result box */
+  .result {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 16px;
+  }
+
+  .result h3 {
+    font-size: 17px;
+  }
+
+  .summary-content {
+    font-size: 14px;
+  }
+
+  .result-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .small-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* History */
+  .history {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .history-item {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  /* Arrow buttons — move closer to edges and smaller */
+  .arrow-btn {
+    padding: 10px 13px;
+    font-size: 15px;
+  }
+
+  .arrow-left { left: 8px; }
+  .arrow-right { right: 8px; }
+}
+
+/* Very small screens (iPhone SE etc) */
+@media (max-width: 380px) {
+
+  .brand-title {
+    font-size: 30px;
+  }
+
+  .dynamic-text {
+    font-size: 18px;
+  }
+
+  .dashboard-hero {
+    font-size: 24px;
+  }
+
+  .tabs button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
